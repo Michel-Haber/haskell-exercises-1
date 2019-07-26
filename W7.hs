@@ -70,7 +70,10 @@ wrap xs = undefined
 --    ==> [[4,7,9],[3,6],[1,2],[2,5,8],[0]]
 
 increasings :: [Int] -> [[Int]]
-increasings xs = undefined
+increasings (x1:x2:xs) = let (current:future) = increasings (x2:xs)
+                         in if x1 < x2 then (x1:current):future
+                                       else [x1]:current:future
+increasings xs = [xs]
 
 -- Ex 5: define a datatype Student that holds three pieces of
 -- information about a student: a name (a String), a student number (a
